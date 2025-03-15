@@ -156,7 +156,7 @@
         </div>
         <div class="login-container">
             <h2>LOGIN HERE</h2>
-            <form action="loginServlet" method="post">
+            <form action="UserLoginServlet" method="POST">
                 <div class="mb-3">
                     <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
                 </div>

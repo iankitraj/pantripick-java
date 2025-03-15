@@ -114,10 +114,10 @@
                 <a href="Product.jsp" class="btn btn-success">Shop Now</a>
             </div>
         </div>
-        <img src="<%= request.getContextPath()%>/Images/Grocery Bag.jpg" alt="Grocery Bag" height="350" width="300" class="hero-img">
+        <img src="<%= request.getContextPath()%>/Image/Grocery Bag.jpg" alt="Grocery Bag" height="350" width="300" class="hero-img">
     </div>
 
-    <!-- Categories Section -->
+    <!-- Categories Section 7-->
     <div class="products-title">
         <span style="font-weight: 100">PRODUCTS&nbsp;</span><span style="font-weight: bold">CATEGORIES</span>
     </div>
@@ -194,7 +194,7 @@
             <a href="About.jsp" class="btn btn-outline-dark mt-2">More Info →</a>
         </div>
         <div class="col-md-6 text-end">
-            <img src="<%= request.getContextPath() %>/Images/Grocery Store.jpeg" alt="Grocery Store" class="about-img img-fluid">
+            <img src="<%= request.getContextPath() %>/Image/Grocery Store.jpeg" alt="Grocery Store" class="about-img img-fluid">
         </div>
     </div>
 </div>

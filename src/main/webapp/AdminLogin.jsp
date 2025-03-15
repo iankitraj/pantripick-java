@@ -203,7 +203,7 @@
         </div>
         <div class="login-container">
             <h2>ADMIN LOGIN</h2>
-            <form action="LoginServlet" method="post">
+            <form action="LoginServlet" method="POST">
                 <div class="mb-3">
                     <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
                 </div>
