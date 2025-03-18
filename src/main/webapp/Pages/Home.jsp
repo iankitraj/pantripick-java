@@ -197,6 +197,8 @@
             <img src="<%= request.getContextPath() %>/Image/Grocery Store.jpeg" alt="Grocery Store" class="about-img img-fluid">
         </div>
     </div>
+    
+    <%@ include file="footer.jsp" %>
 </div>
 </body>
 </html>

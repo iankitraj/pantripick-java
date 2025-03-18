@@ -3,60 +3,72 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>FooterPage -- PantriPick</title>
-    
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <title>Footer - PantriPick</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         .footer {
-            background-color: black;
+            background-color: #1a1a1a;
             color: white;
-            text-align: center;
-            padding: 20px 0;
-            width: 100%;
+            padding: 40px 0;
         }
-        .footer p {
-            margin: 10px 0;
-            font-size: 14px;
+        .footer a {
+            text-decoration: none;
+            color: #bbb;
+            transition: color 0.3s;
         }
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
+        .footer a:hover {
+            color: #007bff;
         }
         .social-icons a {
-            color: white;
-            font-size: 24px;
-            transition: transform 0.3s ease-in-out, color 0.3s;
+            font-size: 20px;
+            margin: 0 10px;
+            color: #bbb;
         }
         .social-icons a:hover {
-            color: #1da1f2;
-            transform: scale(1.2);
-        }
-        @media (max-width: 600px) {
-            .social-icons a {
-                font-size: 20px;
-            }
+            color: #007bff;
         }
     </style>
 </head>
 <body>
-<footer>
 
-    <div class="footer">
-        <p>You can also reach us on:</p>
-        <div class="social-icons">
-            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://twitter.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+<footer class="footer text-center text-md-start">
+    <div class="container">
+        <div class="row">
+            <!-- Brand Info -->
+            <div class="col-md-4">
+                <h2 class="fw-bold">PantriPick</h2>
+                <p class="text-secondary">Your trusted pantry shopping solution.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-4">
+                <h3 class="fs-5 fw-semibold">Quick Links</h3>
+                <ul class="list-unstyled">
+                    <li><a href="Home.jsp">Home</a></li>
+                    <li><a href="Product.jsp">Products</a></li>
+                    <li><a href="About.jsp">About</a></li>
+                    <li><a href="Contact.jsp">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media -->
+            <div class="col-md-4">
+                <h3 class="fs-5 fw-semibold">Follow Us</h3>
+                <div class="social-icons mt-2">
+                    <a href="https://www.facebook.com" target="_blank" class="me-2"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com" target="_blank" class="me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.twitter.com" target="_blank" class="me-2"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
         </div>
-        <p>© 2025. PantriPick, All rights reserved.</p>
+        
+        <!-- Copyright -->
+        <div class="border-top mt-4 pt-3 text-secondary text-center">
+            © 2025 PantriPick. All rights reserved.
+        </div>
     </div>
-    </footer>
+</footer>
 
 </body>
 </html>
