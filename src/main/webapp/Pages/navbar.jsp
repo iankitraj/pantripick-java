@@ -91,7 +91,7 @@ String userEmail = (userSession != null) ? (String) userSession.getAttribute("us
 							<%
 							if (userEmail != null) {
 							%>
-							<li><a class="dropdown-item" href="Profile.jsp">My
+							<li><a class="dropdown-item" href="profile.jsp">My
 									Profile</a></li>
 							<li><a class="dropdown-item text-danger" href="<%=request.getContextPath()%>/UserLogoutServlet">Logout</a></li>
 							<%

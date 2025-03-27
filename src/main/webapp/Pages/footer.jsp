@@ -1,72 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Footer - PantriPick</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>FooterPage -- PantriPick</title>
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         .footer {
-            background-color: #1a1a1a;
+            background-color: black;
             color: white;
-            padding: 40px 0;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
         }
-        .footer a {
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .footer-nav a {
+            color: white;
             text-decoration: none;
-            color: #bbb;
-            transition: color 0.3s;
+            font-size: 16px;
+            transition: color 0.3s ease-in-out;
         }
-        .footer a:hover {
-            color: #007bff;
+
+        .footer-nav a:hover {
+            color: #ff6600;
         }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
         .social-icons a {
-            font-size: 20px;
-            margin: 0 10px;
-            color: #bbb;
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s ease-in-out, color 0.3s;
         }
+
         .social-icons a:hover {
-            color: #007bff;
+            transform: scale(1.2);
+        }
+
+        .social-icons .fa-facebook-f:hover { color: #1877f2; }
+        .social-icons .fa-instagram:hover { color: #E4405F; }
+        .social-icons .fa-x-twitter:hover { color: #1da1f2; }
+        .social-icons .fa-linkedin-in:hover { color: #0077b5; }
+        .social-icons .fa-youtube:hover { color: #ff0000; }
+
+        .footer p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .footer-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .social-icons a {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
-<footer class="footer text-center text-md-start">
-    <div class="container">
-        <div class="row">
-            <!-- Brand Info -->
-            <div class="col-md-4">
-                <h2 class="fw-bold">PantriPick</h2>
-                <p class="text-secondary">Your trusted pantry shopping solution.</p>
-            </div>
+<footer>
+    <div class="footer">
+        <nav class="footer-nav">
+            <a href="home.jsp">Home</a>
+            <a href="products.jsp">Products</a>
+            <a href="about.jsp">About Us</a>
+            <a href="contact.jsp">Contact</a>
+        </nav>
 
-            <!-- Quick Links -->
-            <div class="col-md-4">
-                <h3 class="fs-5 fw-semibold">Quick Links</h3>
-                <ul class="list-unstyled">
-                    <li><a href="Home.jsp">Home</a></li>
-                    <li><a href="Product.jsp">Products</a></li>
-                    <li><a href="About.jsp">About</a></li>
-                    <li><a href="Contact.jsp">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Social Media -->
-            <div class="col-md-4">
-                <h3 class="fs-5 fw-semibold">Follow Us</h3>
-                <div class="social-icons mt-2">
-                    <a href="https://www.facebook.com" target="_blank" class="me-2"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com" target="_blank" class="me-2"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.twitter.com" target="_blank" class="me-2"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
+        <p>Follow us on:</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
         
-        <!-- Copyright -->
-        <div class="border-top mt-4 pt-3 text-secondary text-center">
-            © 2025 PantriPick. All rights reserved.
-        </div>
+        <p>© 2025 PantriPick. All rights reserved.</p>
     </div>
 </footer>
 

@@ -32,6 +32,25 @@
             text-align: center;
         }
 
+        /* Center and scale the image */
+        .image-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .image-container img {
+            width: 100px; /* Fixed size */
+            height: auto;
+            border-radius: 50%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.1);
+        }
+
         .btn-login {
             background: linear-gradient(45deg, #007bff, #0056b3);
             color: white;
@@ -62,6 +81,11 @@
 <body>
 
     <div class="container">
+        <!-- Logo Image -->
+        <div class="image-container">
+            <img src="<%= request.getContextPath()%>/Image/Signupimg.jpeg" alt="PantriPick Logo">
+        </div>
+
         <h2>LOGIN HERE</h2>
         <form action="<%=request.getContextPath()%>/UserLoginServlet" method="POST">
             <div class="mb-3">
