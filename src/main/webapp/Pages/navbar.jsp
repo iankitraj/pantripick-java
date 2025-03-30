@@ -8,10 +8,8 @@ String userEmail = (userSession != null) ? (String) userSession.getAttribute("us
 <head>
 <meta charset="UTF-8">
 <title>Navbar - PantriPick</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
 .navbar {
 	background-color: white;
@@ -57,8 +55,7 @@ String userEmail = (userSession != null) ? (String) userSession.getAttribute("us
 		<div class="container-fluid">
 			<a class="navbar-brand fw-bold" href="Home.jsp">PantriPick</a>
 
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNav">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
@@ -73,27 +70,22 @@ String userEmail = (userSession != null) ? (String) userSession.getAttribute("us
 				<div class="d-flex align-items-center gap-3">
 					<!-- Search Bar -->
 					<div class="search-bar">
-						<input type="text" class="form-control search-input"
-							placeholder="Search..."> <i
-							class="fas fa-search search-icon"></i>
+						<input type="text" class="form-control search-input" placeholder="Search...">
+						<i class="fas fa-search search-icon"></i>
 					</div>
 
 					<!-- Cart Icon -->
-					<a href="Cart.jsp" class="text-dark"><i
-						class="fas fa-shopping-cart fa-lg"></i></a>
+					<a href="Cart.jsp" class="text-dark"><i class="fas fa-shopping-cart fa-lg"></i></a>
 
 					<!-- Profile Dropdown -->
 					<div class="dropdown">
-						<i class="fas fa-user fa-lg dropdown-toggle" id="profileDropdown"
-							data-bs-toggle="dropdown"></i>
-						<ul class="dropdown-menu dropdown-menu-end"
-							aria-labelledby="profileDropdown">
+						<i class="fas fa-user fa-lg dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown"></i>
+						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
 							<%
 							if (userEmail != null) {
 							%>
-							<li><a class="dropdown-item" href="profile.jsp">My
-									Profile</a></li>
-							<li><a class="dropdown-item text-danger" href="<%=request.getContextPath()%>/UserLogoutServlet">Logout</a></li>
+							<li><a class="dropdown-item" href="UserProfile.jsp">My Profile</a></li>
+							<li><a class="dropdown-item text-danger" href="<%= request.getContextPath() %>/UserLogoutServlet">Logout</a></li>
 							<%
 							} else {
 							%>
@@ -109,23 +101,6 @@ String userEmail = (userSession != null) ? (String) userSession.getAttribute("us
 		</div>
 	</nav>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			// Search Functionality
-			document.querySelector(".search-icon")
-					.addEventListener(
-							"click",
-							function() {
-								let query = document
-										.querySelector(".search-input").value;
-								if (query.trim() !== "") {
-									window.location.href = "search.jsp?query="
-											+ encodeURIComponent(query);
-								}
-							});
-		});
-	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

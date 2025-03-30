@@ -147,7 +147,7 @@
                 </tr>
                 
                 <tr>
-                    <td><img src="Image/keloggs." class="product-img"></td>
+                    <td><img src="Image/keloggs.jpg" class="product-img"></td>
                     <td>Honey Corn Flakes</td>
                     <td>32</td>
                     <td>₹77</td>

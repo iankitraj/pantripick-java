@@ -5,9 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,7 +24,6 @@ public class UserLoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        PrintWriter pw = response.getWriter();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
@@ -35,6 +32,7 @@ public class UserLoginServlet extends HttpServlet {
         ResultSet rs = null;
 
         try {
+            // ✅ Database Connection
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "807280");
 
@@ -44,26 +42,29 @@ public class UserLoginServlet extends HttpServlet {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                String storedPassword = rs.getString("password"); // Get stored password from DB
+                String storedPassword = rs.getString("password");
 
-                if (storedPassword.equals(password)) { // Consider using password hashing for security
+                if (storedPassword.equals(password)) { 
+                    // ✅ Session Set
                     HttpSession session = request.getSession();
                     session.setAttribute("user", email);
+                    session.setMaxInactiveInterval(30 * 60); // 30 min session timeout
 
+                    // ✅ Cookie Set
                     Cookie userCookie = new Cookie("user", email);
-                    userCookie.setMaxAge(60 * 60 * 24 * 7); // 7-day cookie
+                    userCookie.setMaxAge(60 * 60 * 24 * 7); // 7 days
                     response.addCookie(userCookie);
 
-                    response.sendRedirect("Pages/Home.jsp");
+                    response.sendRedirect("Pages/Home.jsp"); // ✅ Redirect to Home
                 } else {
-                    pw.println("<script>alert('Invalid email or password'); window.location='Login.jsp';</script>");
+                    response.sendRedirect("Pages/Login.jsp?error=Invalid email or password");
                 }
             } else {
-                pw.println("<script>alert('Invalid email or password'); window.location='Login.jsp';</script>");
+                response.sendRedirect("Pages/Login.jsp?error=Invalid email or password");
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("error.jsp"); // Redirect to an error page instead of showing raw errors
+            response.sendRedirect("error.jsp"); 
         } finally {
             try {
                 if (rs != null) rs.close();
