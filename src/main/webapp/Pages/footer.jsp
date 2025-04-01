@@ -9,25 +9,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
         .footer {
             background-color: black;
             color: white;
             text-align: center;
-            padding: 20px 0;
+            padding: 5px 0; /* Further reduced padding */
             width: 100%;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .footer-nav {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 10px;
+            gap: 8px; /* Reduced gap */
+            flex-wrap: wrap;
+            margin-bottom: 3px; /* Reduced margin */
         }
 
         .footer-nav a {
             color: white;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 12px; /* Smaller font size */
             transition: color 0.3s ease-in-out;
         }
 
@@ -38,64 +53,56 @@
         .social-icons {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
+            gap: 6px; /* Reduced gap */
+            margin-top: 3px;
         }
 
         .social-icons a {
             color: white;
-            font-size: 24px;
+            font-size: 14px; /* Smaller icon size */
             transition: transform 0.3s ease-in-out, color 0.3s;
         }
 
         .social-icons a:hover {
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
 
-        .social-icons .fa-facebook-f:hover { color: #1877f2; }
-        .social-icons .fa-instagram:hover { color: #E4405F; }
-        .social-icons .fa-x-twitter:hover { color: #1da1f2; }
-        .social-icons .fa-linkedin-in:hover { color: #0077b5; }
-        .social-icons .fa-youtube:hover { color: #ff0000; }
-
         .footer p {
-            margin: 10px 0;
-            font-size: 14px;
+            margin: 2px 0; /* Further reduced margin */
+            font-size: 10px; /* Smaller text size */
         }
 
         @media (max-width: 600px) {
             .footer-nav {
                 flex-direction: column;
-                gap: 10px;
+                gap: 3px; /* Reduced gap for mobile */
             }
             .social-icons a {
-                font-size: 20px;
+                font-size: 12px; /* Smaller size for mobile */
             }
         }
     </style>
 </head>
 <body>
 
-<footer>
-    <div class="footer">
-        <nav class="footer-nav">
-            <a href="home.jsp">Home</a>
-            <a href="products.jsp">Products</a>
-            <a href="about.jsp">About Us</a>
-            <a href="contact.jsp">Contact</a>
-        </nav>
+<footer class="footer">
+    <nav class="footer-nav">
+        <a href="Home.jsp">Home</a>
+        <a href="Product.jsp">Products</a>
+        <a href="About.jsp">About Us</a>
+        <a href="Contact.jsp">Contact</a>
+    </nav>
 
-        <p>Follow us on:</p>
-        <div class="social-icons">
-            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://twitter.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
-        </div>
-        
-        <p>© 2025 PantriPick. All rights reserved.</p>
+    <p>Follow us on:</p>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
+    
+    <p>© 2025 PantriPick. All rights reserved.</p>
 </footer>
 
 </body>

@@ -103,6 +103,11 @@
 
 <%@ include file="navbar.jsp" %>
 
+<%
+    // Check if user is logged in
+    boolean isLoggedIn = (session.getAttribute("user") != null);
+%>
+
 <div class="container">
     <!-- Hero Section -->
     <div class="hero-section">
@@ -110,77 +115,41 @@
             <h1>FRESH GROCERIES</h1>
             <p>STRAIGHT TO YOUR DOOR</p><br><br>
             <div class="hero-btns">
-                <a href="Signup.jsp" class="btn btn-outline-dark">Get Started →</a>
-                <a href="Product.jsp" class="btn btn-success">Shop Now</a>
+                <a href="<%= isLoggedIn ? "Product.jsp" : "Signup.jsp" %>" class="btn btn-outline-dark">Get Started →</a>
+                <a href="<%= isLoggedIn ? "Product.jsp" : "Signup.jsp" %>" class="btn btn-success">Shop Now</a>
             </div>
         </div>
         <img src="<%= request.getContextPath()%>/Image/Grocery Bag.jpg" alt="Grocery Bag" height="350" width="300" class="hero-img">
     </div>
 
-    <!-- Categories Section 7-->
+    <!-- Categories Section -->
     <div class="products-title">
         <span style="font-weight: 100">PRODUCTS&nbsp;</span><span style="font-weight: bold">CATEGORIES</span>
     </div>
     <div class="row g-4 mt-3">
-        <div class="col-md-3">
-        <div class="category-card">
-            <img src="<%= request.getContextPath() %>/Image/Dairy & Bread.jpg" alt="Dairy & Bread">
-            <p>Dairy and Bread</p>
-            <a href="Product.jsp" class="btn btn-sm btn-primary mt-2">Explore</a>
-        </div>
-</div>
+        <%
+            // Category List
+            String[][] categories = {
+                {"Dairy & Bread.jpg", "Dairy and Bread"},
+                {"Fruits & Vegetables.jpg", "Fruits and Vegetables"},
+                {"Cold Drinks and Juice.jpg", "Cold Drinks and Juice"},
+                {"Snacks & Munchies.jpg", "Snacks and Munchies"},
+                {"Biscuits.jpg", "Bakery and Biscuits"},
+                {"Spices and Herbs.jpg", "Spices and Herbs"},
+                {"Personal Care.jpg", "Personal Care"},
+                {"Cleaning Essentials.jpeg", "Cleaning Essentials"}
+            };
 
-        <div class="col-md-3">
-                <div class="category-card">
-                    <img src="<%= request.getContextPath() %>/Image/Fruits & Vegetables.jpg" alt="Fruits & Vegetables">
-                    <p>Fruits and Vegetables</p>
-                    <a href="Product.jsp" class="btn btn-sm btn-primary mt-2">Explore</a>
-                </div>
-
-        </div>
+            for (String[] category : categories) {
+        %>
         <div class="col-md-3">
             <div class="category-card">
-                <img src="<%= request.getContextPath() %>/Image/Cold Drinks and Juice.jpg" alt="Cold Drinks">
-                <p>Cold Drinks and Juice</p>
-                <a href="Product.jsp" class="btn btn-sm btn-primary mt-2">Explore</a>
+                <img src="<%= request.getContextPath() %>/Image/<%= category[0] %>" alt="<%= category[1] %>">
+                <p><%= category[1] %></p>
+                <a href="<%= isLoggedIn ? "Product.jsp" : "Signup.jsp" %>" class="btn btn-sm btn-primary mt-2">Explore</a>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="category-card">
-                <img src="<%= request.getContextPath() %>/Image/Snacks & Munchies.jpg" alt="Snacks">
-                <p>Snacks and Munchies</p>
-                <a href="Product.jsp" class="btn btn-sm btn-primary mt-2">Explore</a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="category-card">
-                <img src="<%= request.getContextPath() %>/Image/Biscuits.jpg" alt="Bakery">
-                <p>Bakery and Biscuits</p>
-                <a href="Product.jsp" class="btn btn-sm btn-primary mt-2">Explore</a>
-            </div>
-        </div>
-        <div class="col-md-3">
-                <div class="category-card">
-                    <img src="<%= request.getContextPath() %>/Image/Spices and Herbs.jpg" alt="Spices">
-                    <p>Spices and Herbs</p>
-                    <a href="Product.jsp" class="btn btn-sm btn-primary mt-2">Explore</a>
-                </div>
-
-        </div>
-        <div class="col-md-3">
-            <div class="category-card">
-                <img src="<%= request.getContextPath() %>/Image/Personal Care.jpg" alt="Personal Care">
-                <p>Personal Care</p>
-                <a href="Product.jsp" class="btn btn-sm btn-primary mt-2">Explore</a>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="category-card">
-                <img src="<%= request.getContextPath() %>/Image/Cleaning Essentials.jpeg" alt="Cleaning">
-                <p>Cleaning Essentials</p>
-                <a href="Product.jsp" class="btn btn-sm btn-primary mt-2">Explore</a>
-            </div>
-        </div>
+        <% } %>
     </div>
 
     <!-- About Section -->
@@ -198,6 +167,8 @@
         </div>
     </div>
 </div> 
+
 <%@ include file="footer.jsp" %>
+
 </body>
 </html>

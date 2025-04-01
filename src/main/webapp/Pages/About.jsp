@@ -175,11 +175,8 @@
             <p>
                 Thank you for choosing us. We look forward to serving you!
             </p>
-
-           
-
         </div>
     </div>
-
+<%@ include file="footer.jsp" %>
 </body>
 </html>

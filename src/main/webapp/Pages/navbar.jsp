@@ -1,4 +1,4 @@
-<%@ page import="jakarta.servlet.http.HttpSession"%>
+<%@ page import="jakarta.servlet.http.HttpSession" %>
 <%
 HttpSession userSession = request.getSession(false);
 String userEmail = (userSession != null) ? (String) userSession.getAttribute("user") : null;
@@ -74,8 +74,14 @@ String userEmail = (userSession != null) ? (String) userSession.getAttribute("us
 						<i class="fas fa-search search-icon"></i>
 					</div>
 
-					<!-- Cart Icon -->
-					<a href="Cart.jsp" class="text-dark"><i class="fas fa-shopping-cart fa-lg"></i></a>
+					<!-- Cart Icon (Only visible after login) -->
+					<%
+					if (userEmail != null) {
+					%>
+						<a href="Cart.jsp" class="text-dark"><i class="fas fa-shopping-cart fa-lg"></i></a>
+					<%
+					}
+					%>
 
 					<!-- Profile Dropdown -->
 					<div class="dropdown">

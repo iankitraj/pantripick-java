@@ -45,6 +45,7 @@ public class UserLoginServlet extends HttpServlet {
                 String storedPassword = rs.getString("password");
 
                 if (storedPassword.equals(password)) { 
+                	
                     // ✅ Session Set
                     HttpSession session = request.getSession();
                     session.setAttribute("user", email);

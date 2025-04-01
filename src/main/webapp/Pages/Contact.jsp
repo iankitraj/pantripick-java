@@ -194,6 +194,7 @@
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
     </script>
+    <%@ include file="footer.jsp" %>
 </body>
 
 </html>
