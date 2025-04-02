@@ -1,112 +1,159 @@
-<%@ page import="jakarta.servlet.http.HttpSession" %>
-<%
-HttpSession userSession = request.getSession(false);
-String userEmail = (userSession != null) ? (String) userSession.getAttribute("user") : null;
-%>
+<%@ page import="jakarta.servlet.http.HttpSession" %> <% HttpSession userSession
+= request.getSession(false); String userEmail = (userSession != null) ? (String)
+userSession.getAttribute("user") : null; %> <%@ page language="java"
+contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Navbar - PantriPick</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<style>
-.navbar {
-	background-color: white;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Navbar</title>
 
-.nav-item a {
-	font-size: 18px;
-	transition: color 0.3s;
-}
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 
-.nav-item a:hover {
-	color: #007bff;
-}
+    <script>
+      function handleSearch(event) {
+        if (event.key === 'Enter') {
+          var query = event.target.value.trim()
+          if (query) {
+            window.location.href = 'search.jsp?q=' + encodeURIComponent(query)
+          }
+        }
+      }
+    </script>
 
-.dropdown-menu {
-	min-width: 150px;
-}
+    <style>
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
 
-.dropdown-menu a {
-	font-size: 16px;
-}
+      .navbar-logo img {
+        width: 140px;
+      }
 
-.search-bar {
-	display: flex;
-	align-items: center;
-	border: 1px solid #ccc;
-	padding: 5px;
-	border-radius: 5px;
-	background: white;
-}
+      .navbar-menu {
+        display: flex;
+        gap: 20px;
+        list-style: none;
+      }
 
-.search-bar input {
-	border: none;
-	outline: none;
-	font-size: 16px;
-	width: 150px;
-}
-</style>
-</head>
-<body>
-	<nav class="navbar navbar-expand-lg fixed-top">
-		<div class="container-fluid">
-			<a class="navbar-brand fw-bold" href="Home.jsp">PantriPick</a>
+      .navbar-menu a {
+        text-decoration: none;
+        color: #333;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
 
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+      .navbar-menu a:hover {
+        color: #ff6600;
+      }
 
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav mx-auto">
-					<li class="nav-item"><a class="nav-link" href="Home.jsp">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="Product.jsp">Products</a></li>
-					<li class="nav-item"><a class="nav-link" href="About.jsp">About</a></li>
-					<li class="nav-item"><a class="nav-link" href="Contact.jsp">Contact</a></li>
-				</ul>
+      .navbar-icons {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
 
-				<div class="d-flex align-items-center gap-3">
-					<!-- Search Bar -->
-					<div class="search-bar">
-						<input type="text" class="form-control search-input" placeholder="Search...">
-						<i class="fas fa-search search-icon"></i>
-					</div>
+      .search-bar {
+        position: relative;
+      }
 
-					<!-- Cart Icon (Only visible after login) -->
-					<%
-					if (userEmail != null) {
-					%>
-						<a href="Cart.jsp" class="text-dark"><i class="fas fa-shopping-cart fa-lg"></i></a>
-					<%
-					}
-					%>
+      .search-bar input {
+        padding: 8px 30px 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        font-size: 12px;
+        width: 200px;
+      }
 
-					<!-- Profile Dropdown -->
-					<div class="dropdown">
-						<i class="fas fa-user fa-lg dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown"></i>
-						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-							<%
-							if (userEmail != null) {
-							%>
-							<li><a class="dropdown-item" href="UserProfile.jsp">My Profile</a></li>
-							<li><a class="dropdown-item text-danger" href="<%= request.getContextPath() %>/UserLogoutServlet">Logout</a></li>
-							<%
-							} else {
-							%>
-							<li><a class="dropdown-item" href="Login.jsp">Sign In</a></li>
-							<li><a class="dropdown-item" href="Signup.jsp">Sign Up</a></li>
-							<%
-							}
-							%>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</nav>
+      .search-bar i {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+        cursor: pointer;
+      }
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: #f8f9fa;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="navbar-logo">
+        <img src="assets/logo.png" alt="PantriPick Logo" />
+      </div>
+
+      <ul class="navbar-menu">
+        <li><a href="Home.jsp">HOME</a></li>
+        <li><a href="Product.jsp">PRODUCTS</a></li>
+        <li><a href="About.jsp">ABOUT</a></li>
+        <li><a href="Contact.jsp">CONTACT</a></li>
+      </ul>
+
+      <div class="navbar-icons">
+        <div class="search-bar">
+          <input
+            type="text"
+            placeholder="Search products here"
+            onkeydown="handleSearch(event)"
+          />
+          <i class="fas fa-search"></i>
+        </div>
+        <div class="dropdown">
+          <i
+            class="fas fa-user fa-lg dropdown-toggle"
+            id="profileDropdown"
+            data-bs-toggle="dropdown"
+          ></i>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="profileDropdown"
+          >
+            <% if (userEmail != null) { %>
+            <li>
+              <a class="dropdown-item" href="UserProfile.jsp">My Profile</a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item text-danger"
+                href="<%= request.getContextPath() %>/UserLogoutServlet"
+                >Logout</a
+              >
+            </li>
+            <% } else { %>
+            <li><a class="dropdown-item" href="Login.jsp">Sign In</a></li>
+            <li><a class="dropdown-item" href="Signup.jsp">Sign Up</a></li>
+            <% } %>
+          </ul>
+        </div>
+        <% if (userEmail != null) { %>
+        <a href="Cart.jsp" class="text-dark"
+          ><i class="fas fa-shopping-cart fa-lg"></i
+        ></a>
+        <% } %>
+      </div>
+    </nav>
+  </body>
 </html>
