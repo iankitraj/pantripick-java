@@ -4,132 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HomePage --PantriPick</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            padding: 40px;
-        }
-        .container {
-            max-width: 1000px;
-            width: 100%;
-            animation: fadeIn 0.8s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .hero-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px;
-            padding-bottom: 170px;
-            padding-top: 100px;
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-in-out;
         }
-        .hero-text h1 {
-            font-size: 40px;
-            font-weight: bold;
-            color: #28a745;
-        }
-        .hero-text p {
-            font-size: 34px;
-            color: #333;
-            font-weight: bold;
-        }
-        .hero-btns .btn {
-            border-radius: 6px;
-            padding: 8px 15px;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        .hero-img {
-            max-width: 250px;
-            border-radius: 12px;
-        }
-        .products-title {
-            display: flex;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .products-title::after {
-            content: '';
-            flex-grow: 1;
-            height: 2px;
-            background-color: black;
-            margin-left: 10px;
-        }
-        .category-card {
-            background: #fff;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .category-card:hover {
+
+        .hover-scale:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-        .category-card img {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            border-radius: 8px;
-            background: #f0f0f0;
-        }
-        .about-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 30px;
-            margin-top: 40px;
-        }
-        .about-text h3 {
-            font-size: 22px;
-            font-weight: bold;
-        }
-        .about-img {
-            border-radius: 12px;
+            transition: transform 0.3s ease-in-out;
         }
     </style>
 </head>
-<body>
-
-<%@ include file="navbar.jsp" %>
-
-<%
-    // Check if user is logged in
-    boolean isLoggedIn = (session.getAttribute("user") != null);
-%>
-
-<div class="container">
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="hero-text">
-            <h1>FRESH GROCERIES</h1>
-            <p>STRAIGHT TO YOUR DOOR</p><br><br>
-            <div class="hero-btns">
-                <a href="<%= isLoggedIn ? "Product.jsp" : "Signup.jsp" %>" class="btn btn-outline-dark">Get Started →</a>
-                <a href="<%= isLoggedIn ? "Product.jsp" : "Signup.jsp" %>" class="btn btn-success">Shop Now</a>
+<body class="bg-gray-100">
+    <%@ include file="navbar.jsp" %>
+    <div class='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] fade-in'>
+    
+    
+    <div class="px-6 sm:px-16 lg:px-24 py-20 sm:py-24 flex flex-col sm:flex-row items-center justify-between">
+        <div class="w-full sm:w-1/2 text-center sm:text-left">
+            <h1 class="text-green-600 text-4xl sm:text-6xl font-bold leading-tight fade-in">Fresh Groceries</h1>
+            <h2 class="text-black text-xl sm:text-3xl font-medium mt-2 fade-in">Delivered straight to your door</h2>
+            <div class="mt-6 flex gap-4 justify-center sm:justify-start fade-in">
+                <a href="<%= session.getAttribute("user") != null ? "products.jsp" : "signup.jsp" %>" class="bg-green-600 text-white px-6 py-2 rounded-md transition hover:bg-green-700">Get Started →</a>
+                <a href="products.jsp" class="border border-green-600 text-green-600 px-6 py-2 rounded-md transition hover:bg-green-100">Shop Now</a>
             </div>
         </div>
-        <img src="<%= request.getContextPath()%>/Image/Grocery Bag.jpg" alt="Grocery Bag" height="350" width="300" class="hero-img">
+        <div class="w-full sm:w-1/2 flex justify-center sm:justify-end mt-8 sm:mt-0">
+            <img class="max-w-xs sm:max-w-md lg:max-w-lg object-cover rounded-xl shadow-md fade-in" src="<%= request.getContextPath()%>/Image/Grocery Bag.jpg" alt="Fresh groceries delivered" >
+        </div>
     </div>
 
-    <!-- Categories Section -->
-    <div class="products-title">
-        <span style="font-weight: 100">PRODUCTS&nbsp;</span><span style="font-weight: bold">CATEGORIES</span>
-    </div>
-    <div class="row g-4 mt-3">
-        <%
-            // Category List
-            String[][] categories = {
+    <div class="px-6 sm:px-16 lg:px-24 py-8 fade-in">
+        <div class="relative inline-block mb-6">
+            <h2 class="text-black text-2xl sm:text-3xl font-normal inline-block">PRODUCTS <span class="font-bold">CATEGORIES</span></h2>
+            <span class="absolute left-full top-1/2 -translate-y-1/2 ml-3 w-16 border-t-2 border-black"></span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 py-4">
+            <% String[][] categories = {
                 {"Dairy & Bread.jpg", "Dairy and Bread"},
                 {"Fruits & Vegetables.jpg", "Fruits and Vegetables"},
                 {"Cold Drinks and Juice.jpg", "Cold Drinks and Juice"},
@@ -137,39 +55,43 @@
                 {"Biscuits.jpg", "Bakery and Biscuits"},
                 {"Spices and Herbs.jpg", "Spices and Herbs"},
                 {"Personal Care.jpg", "Personal Care"},
+                {"Cleaning Essentials.jpeg", "Cleaning Essentials"},
+                {"Personal Care.jpg", "Personal Care"},
                 {"Cleaning Essentials.jpeg", "Cleaning Essentials"}
             };
+            for (String[] category : categories) { %>
+                <a href="Product.jsp" class="flex flex-col items-center cursor-pointer hover-scale fade-in">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 bg-blue-50 rounded-xl flex items-center justify-center shadow">
+                        <img src="<%= request.getContextPath() %>/Image/<%= category[0] %>" alt="<%= category[1] %>">
+                    </div>
+                    <p class="text-black text-xs sm:text-sm mt-2 font-normal text-center"><%= category[1] %></p>
+                </a>
+            <% } %>
+        </div>
+    </div>
 
-            for (String[] category : categories) {
-        %>
-        <div class="col-md-3">
-            <div class="category-card">
-                <img src="<%= request.getContextPath() %>/Image/<%= category[0] %>" alt="<%= category[1] %>">
-                <p><%= category[1] %></p>
-                <a href="<%= isLoggedIn ? "Product.jsp" : "Signup.jsp" %>" class="btn btn-sm btn-primary mt-2">Explore</a>
+    <div class='flex flex-col sm:flex-row items-center justify-between px-6 sm:px-16 lg:px-24 py-15 mb-14 mt-12 fade-in'>
+        <div class='w-full sm:w-1/2 text-center sm:text-left'>
+            <div class='relative inline-block'>
+                <h2 class='text-black text-2xl sm:text-3xl font-normal inline-block'>ABOUT <span class='font-bold'>US</span></h2>
+                <span class='absolute left-full top-1/2 -translate-y-1/2 ml-3 w-16 border-t-2 border-black'></span>
+            </div>
+            <p class='text-black mt-4 leading-relaxed'>
+                Your trusted neighborhood grocery shop, dedicated to providing high-quality products that meet every shopper's needs.
+            </p>
+            <p class='text-black mt-2'>
+                From fresh produce to daily essentials, we offer a wide selection of items.
+            </p>
+            <div class="mt-6">
+                <a href="About.jsp" class="border border-green-600 text-green-600 px-6 py-2 rounded-md transition hover:bg-green-600 hover:text-white shadow-sm">Know More →</a>
             </div>
         </div>
-        <% } %>
-    </div>
-
-    <!-- About Section -->
-    <div class="about-section row mt-5 p-4">
-        <div class="col-md-6 d-flex flex-column justify-content-center">
-            <h3 class="fw-bold">ABOUT US</h3>
-            <p class="text-muted">
-                We deliver fresh groceries to your home with the best quality and lowest prices. 
-                Shop online from the comfort of your home and get everything you need, right at your doorstep.
-            </p><br><br><br><br><br>
-            <a href="About.jsp" class="btn btn-outline-dark mt-2">More Info →</a>
-        </div>
-        <div class="col-md-6 text-end">
-            <img src="<%= request.getContextPath() %>/Image/Grocery Store.jpeg" alt="Grocery Store" class="about-img img-fluid">
+        <div class="w-full sm:w-1/2 flex justify-center sm:justify-end mt-8 sm:mt-0">
+            <img class="w-56 sm:w-72 lg:w-88 rounded-lg object-cover shadow-md fade-in" src="<%= request.getContextPath() %>/Image/Grocery Store.jpeg" alt="Grocery Store">
         </div>
     </div>
-</div> 
-
-
-<%@ include file="footer.jsp" %>
-
+    </div>
+    
+    <%@ include file="footer.jsp" %>
 </body>
 </html>

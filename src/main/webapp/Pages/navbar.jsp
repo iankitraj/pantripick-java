@@ -31,8 +31,6 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         justify-content: space-between;
         align-items: center;
         padding: 15px 20px;
-        background-color: white;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
 
       .navbar-logo img {

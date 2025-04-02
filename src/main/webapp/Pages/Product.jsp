@@ -1,194 +1,85 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Products Available</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            background-color: #f8f9fa;
-            padding-top: 80px;
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
         }
-
-        .products-container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
-            animation: fadeIn 0.8s ease-in-out;
-        }
-
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
-        .products-title {
-            display: flex;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .products-title::after {
-            content: '';
-            flex-grow: 1;
-            height: 2px;
-            background-color: black;
-            margin-left: 10px;
-        }
-
-        .category-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 30px;
-        }
-
-        .product-card {
-            background: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .product-card img {
-            width: 150px;
-            height: 150px;
-            object-fit: contain;
-            border-radius: 8px;
-            background: #f0f0f0;
-        }
-
-        .navbar {
-            background-color: #fff;
-            padding: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
     </style>
 </head>
 
-<body>
+<body class="bg-gray-100">
     <%@ include file="navbar.jsp" %>
-
-    <div class="products-container">
-        <div class="products-title">
-            <span style="font-weight: 100">PRODUCTS&nbsp;</span><span style="font-weight: bold">AVAILABLE</span>
-        </div>
-
-        <!-- Dairy, Bread & Eggs -->
-        <h5 class="category-title">Dairy, Bread & Eggs</h5>
-        <div class="row g-4">
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="<%= request.getContextPath() %>/Image/bread.webp" alt="Britannia Brown Bread" />
-                    <p>Britannia Brown Bread</p>
-                    <p>₹30</p>
-                </div>
+    <div class="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+        <div class="px-6 sm:px-16 lg:px-24 py-16 fade-in">
+            <!-- Heading -->
+            <div class="relative inline-block py-3">
+                <h2 class="text-black text-2xl sm:text-3xl font-normal inline-block fade-in">
+                    PRODUCTS <span class="font-bold">AVAILABLE</span>
+                </h2>
+                <span class="absolute left-full top-1/2 -translate-y-1/2 ml-3 w-16 border-t-2 border-black"></span>
             </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="<%= request.getContextPath() %>/Image/dahi.webp" alt="Amul Masti Dahi" />
-                    <p>Amul Masti Dahi</p>
-                    <p>₹70</p>
+
+            <!-- Sections with Fade-in Animation -->
+            <h5 class="text-xl font-bold mt-8 fade-in">Dairy, Bread & Eggs</h5>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4 fade-in">
+                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
+                    <img src="<%= request.getContextPath() %>/Image/bread.webp" alt="Britannia Brown Bread" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
+                    <p class="mt-2">Britannia Brown Bread</p>
+                    <p class="font-semibold">₹30</p>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <a href="Details.jsp">
-                    <div class="product-card">
-                        <img src="<%= request.getContextPath() %>/Image/keloggs.jpg" alt="Honey Corn Flakes" />
-                        <p>Honey Corn Flakes</p>
-                        <p>₹278</p>
-                    </div>
+                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
+                    <img src="<%= request.getContextPath() %>/Image/dahi.webp" alt="Amul Masti Dahi" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
+                    <p class="mt-2">Amul Masti Dahi</p>
+                    <p class="font-semibold">₹70</p>
+                </div>
+                <a href="Details.jsp" class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
+                    <img src="<%= request.getContextPath() %>/Image/keloggs.jpg" alt="Honey Corn Flakes" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
+                    <p class="mt-2">Honey Corn Flakes</p>
+                    <p class="font-semibold">₹278</p>
                 </a>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="<%= request.getContextPath() %>/Image/eggs.webp" alt="Eggs Tray" />
-                    <p>Eggs Tray</p>
-                    <p>₹100</p>
+                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
+                    <img src="<%= request.getContextPath() %>/Image/eggs.webp" alt="Eggs Tray" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
+                    <p class="mt-2">Eggs Tray</p>
+                    <p class="font-semibold">₹100</p>
                 </div>
             </div>
-        </div>
 
-        <!-- Fruits & Vegetables -->
-        <h5 class="category-title">Fruits & Vegetables</h5>
-        <div class="row g-4">
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="<%= request.getContextPath() %>/Image/fruits1.jpg" alt="Fresh Fruits" />
-                    <p>Fresh Fruits</p>
-                    <p>₹60</p>
+            <h5 class="text-xl font-bold mt-8 fade-in">Fruits & Vegetables</h5>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4 fade-in">
+                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
+                    <img src="<%= request.getContextPath() %>/Image/fruits1.jpg" alt="Fresh Fruits" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
+                    <p class="mt-2">Fresh Fruits</p>
+                    <p class="font-semibold">₹60</p>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="<%= request.getContextPath() %>/Image/fruits2.jpg" alt="Seasonal Vegetables" />
-                    <p>Seasonal Vegetables</p>
-                    <p>₹60</p>
+                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
+                    <img src="<%= request.getContextPath() %>/Image/fruits2.jpg" alt="Seasonal Vegetables" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
+                    <p class="mt-2">Seasonal Vegetables</p>
+                    <p class="font-semibold">₹60</p>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="<%= request.getContextPath() %>/Image/fruits3.jpg" alt="Green Leafy" />
-                    <p>Green Leafy</p>
-                    <p>₹60</p>
+                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
+                    <img src="<%= request.getContextPath() %>/Image/fruits3.jpg" alt="Green Leafy" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
+                    <p class="mt-2">Green Leafy</p>
+                    <p class="font-semibold">₹60</p>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="<%= request.getContextPath() %>/Image/fruits4.jpg" alt="Exotic Fruits" />
-                    <p>Exotic Fruits</p>
-                    <p>₹60</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Snacks & Munchies -->
-        <h5 class="category-title">Snacks & Munchies</h5>
-        <div class="row g-4">
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="<%= request.getContextPath() %>/Image/snack1.jpg" alt="Chips" />
-                    <p>Chips</p>
-                    <p>₹50</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="<%= request.getContextPath() %>/Image/snack2.jpg" alt="Cookies" />
-                    <p>Cookies</p>
-                    <p>₹50</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="<%= request.getContextPath() %>/Image/snack3.jpg" alt="Namkeen" />
-                    <p>Namkeen</p>
-                    <p>₹50</p>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="product-card">
-                    <img src="<%= request.getContextPath() %>/Image/snack4.jpg" alt="Chocolate" />
-                    <p>Chocolate</p>
-                    <p>₹50</p>
+                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
+                    <img src="<%= request.getContextPath() %>/Image/fruits4.jpg" alt="Exotic Fruits" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
+                    <p class="mt-2">Exotic Fruits</p>
+                    <p class="font-semibold">₹60</p>
                 </div>
             </div>
         </div>

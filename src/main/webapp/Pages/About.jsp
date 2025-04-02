@@ -1,14 +1,10 @@
-<%@ include file="navbar.jsp" %> <%@ page language="java"
-contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>About Us - PantriPick</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-    />
+    <title>About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
       @keyframes fadeIn {
         from {
@@ -61,8 +57,10 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
       }
     </style>
   </head>
-  <body>
+  <body class="bg-gray-100">
+  <%@ include file="navbar.jsp" %>
     <div class="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+    
       <div class="px-6 sm:px-16 lg:px-24 py-16 fade-in">
         <!-- Heading -->
         <div class="relative inline-block mb-7 py-3">
