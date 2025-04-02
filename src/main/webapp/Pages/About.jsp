@@ -1,182 +1,156 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="navbar.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>AboutPage -- PantriPick</title>
+<meta charset="UTF-8">
+<title>About Us - PantriPick</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+<style>
+@
+keyframes fadeIn {from { opacity:0;
+	transform: translateY(20px);
+}
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
 
-        body {
-            background-color: lightblue;
-            color: #333;
-        }
+}
+@
+keyframes bounceIn { 0%, 100% {
+	transform: scale(1);
+}
 
-        .about-container {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 30px;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            text-align: center;
-            opacity: 0;
-            animation: fadeIn 1.2s forwards;
-        }
+50
+%
+{
+transform
+:
+scale(
+1.1
+);
+}
+}
+@
+keyframes slideIn {from { opacity:0;
+	transform: translateX(-30px);
+}
 
-        .about-title {
-            font-size: 38px;
-            font-weight: bold;
-            color: #007bff;
-            margin-bottom: 20px;
-            animation: slideDown 1s ease-out;
-        }
+to {
+	opacity: 1;
+	transform: translateX(0);
+}
 
-        .about-title strong {
-            color: #ff6600;
-        }
+}
+.fade-in {
+	animation: fadeIn 1.5s ease-in-out;
+}
 
-        .image-section {
-            width: 100%;
-            text-align: center;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
+.bounce-in {
+	animation: bounceIn 1.2s ease-in-out;
+}
 
-        .image-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.slide-in {
+	opacity: 0;
+	animation: slideIn 1.5s ease-in-out forwards;
+}
 
-        .image-container img {
-            width: 200px;
-            height: 200px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out, opacity 1s ease-in-out;
-            opacity: 0;
-            animation: fadeInImage 1.5s forwards;
-        }
-
-        .image-container img:hover {
-            transform: scale(1.1);
-        }
-
-        .image-container p {
-            margin-top: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            color: #555;
-        }
-
-        .info-section {
-            text-align: left;
-            padding: 20px;
-            opacity: 0;
-            animation: slideLeft 1.2s ease-in-out forwards;
-        }
-
-        .info-section p {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 12px 25px;
-            font-size: 18px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #ff6600;
-            transform: scale(1.05);
-        }
-
-        @media (max-width: 768px) {
-            .image-section {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes fadeInImage {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-    </style>
+.hover-scale:hover {
+	transform: scale(1.1);
+	transition: transform 0.4s ease-in-out;
+}
+</style>
 </head>
 <body>
 
-    <%@ include file="navbar.jsp"%>
 
-    <div class="container about-container">
-        <h1 class="about-title">
-            About <strong>Us</strong>
-        </h1>
 
-        <div class="image-section">
-            <div class="image-container">
-                <img src="<%=request.getContextPath()%>/Image/img1.jpeg" alt="Store Interior">
-                <p>Store Interior</p>
-            </div>
-            <div class="image-container">
-                <img src="<%=request.getContextPath()%>/Image/img2.jpeg" alt="Fresh Produce">
-                <p>Fresh Produce</p>
-            </div>
-            <div class="image-container">
-                <img src="<%=request.getContextPath()%>/Image/img2.jpeg" alt="Shopping Aisle">
-                <p>Shopping Aisle</p>
-            </div>
-        </div>
+	<div class='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+		<div class="px-6 sm:px-16 lg:px-24 py-16 fade-in">
+			<!-- Heading -->
+			<div class="relative inline-block mb-7 py-3 mt-10">
+				<h2
+					class="text-black text-2xl sm:text-3xl font-normal inline-block bounce-in">
+					ABOUT <span class="font-bold">US</span>
+				</h2>
+				<span
+					class="absolute left-full top-1/2 -translate-y-1/2 ml-3 w-16 border-t-2 border-black"></span>
+			</div>
 
-        <div class="info-section">
-            <p>
-                Welcome to <strong>PantriPick</strong>, your trusted neighborhood grocery shop. We are dedicated 
-                to providing a variety of high-quality products to meet the needs of every shopper. From fresh 
-                produce to everyday essentials, we aim to offer a wide selection of items to make your shopping 
-                experience convenient and enjoyable.
-            </p>
+			<!-- Image Grid -->
+			<div
+				class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-32 mb-4">
+				<div class="flex flex-col items-center">
+					<img
+						class="w-64 h-80 object-cover rounded-xl shadow-md transition-transform transform hover:scale-105"
+						src="<%=request.getContextPath()%>/Image/img1.jpeg"
+						alt="Store Interior">
+					<p
+						class="text-black text-sm sm:text-base mt-3 text-center font-medium">Store
+						Interior</p>
+				</div>
+				<div class="flex flex-col items-center">
+					<img
+						class="w-64 h-80 object-cover rounded-xl shadow-md transition-transform transform hover:scale-105"
+						src="<%=request.getContextPath()%>/Image/img2.jpeg"
+						alt="Fresh Produce">
+					<p
+						class="text-black text-sm sm:text-base mt-3 text-center font-medium">Fresh
+						Produce</p>
+				</div>
+				<div class="flex flex-col items-center">
+					<img
+						class="w-64 h-80 object-cover rounded-xl shadow-md transition-transform transform hover:scale-105"
+						src="<%=request.getContextPath()%>/Image/img2.jpeg"
+						alt="Shopping Aisle">
+					<p
+						class="text-black text-sm sm:text-base mt-3 text-center font-medium">Shopping
+						Aisle</p>
+				</div>
+			</div>
 
-            <p>
-                Our focus is on <strong>quality, service, and customer satisfaction</strong>. Whether you're coming in for a quick grocery 
-                run or preparing for a big meal, we are here to support you with friendly service and a great selection.
-            </p>
+			<!-- Description Section -->
+			<div class="bg-gray-100 p-6 sm:p-8 rounded-lg shadow-lg slide-in">
+				<p
+					class="text-sm sm:text-base text-gray-700 leading-relaxed text-justify">
+					Welcome to <span class="font-semibold text-black">PantriPick</span>,
+					your trusted neighborhood grocery store. Since our humble
+					beginnings in 1997 in Ahmedabad, we have been committed to bringing
+					the best quality products to our customers. What started as a small
+					family-run store has now expanded into three thriving branches
+					across Ahmedabad, Vadodara, and Surat.
+				</p>
 
-            <p>
-                Thank you for choosing us. We look forward to serving you!
-            </p>
-        </div>
-    </div>
-<%@ include file="footer.jsp" %>
+				<p
+					class="text-sm sm:text-base text-gray-700 leading-relaxed text-justify mt-4">
+					At PantriPick, we believe in providing a seamless shopping
+					experience by combining affordable pricing, premium quality, and
+					exceptional customer service. We source fresh, locally grown
+					produce and stock a wide range of essential grocery items to meet
+					the needs of every household.</p>
+
+				<p
+					class="text-sm sm:text-base text-gray-700 leading-relaxed text-justify mt-4">
+					Over the years, we have built a strong bond with our customers,
+					thanks to our unwavering dedication to quality and service. Whether
+					you're here for a quick grocery run or preparing for a special
+					occasion, our stores are designed to offer everything you need
+					under one roof.</p>
+
+				<p
+					class="text-sm sm:text-base text-gray-700 leading-relaxed text-justify mt-4">
+					As we continue to grow, our mission remains the same—to make
+					everyday shopping effortless, enjoyable, and affordable. Thank you
+					for being part of our journey. We look forward to serving you for
+					many years to come!</p>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>
+<%@ include file="footer.jsp"%>
