@@ -26,14 +26,13 @@
     <%@ include file="navbar.jsp" %>
     <div class='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] fade-in'>
     
-    
     <div class="px-6 sm:px-16 lg:px-24 py-20 sm:py-24 flex flex-col sm:flex-row items-center justify-between">
         <div class="w-full sm:w-1/2 text-center sm:text-left">
             <h1 class="text-green-600 text-4xl sm:text-6xl font-bold leading-tight fade-in">Fresh Groceries</h1>
             <h2 class="text-black text-xl sm:text-3xl font-medium mt-2 fade-in">Delivered straight to your door</h2>
             <div class="mt-6 flex gap-4 justify-center sm:justify-start fade-in">
-                <a href="<%= session.getAttribute("user") != null ? "products.jsp" : "signup.jsp" %>" class="bg-green-600 text-white px-6 py-2 rounded-md transition hover:bg-green-700">Get Started →</a>
-                <a href="products.jsp" class="border border-green-600 text-green-600 px-6 py-2 rounded-md transition hover:bg-green-100">Shop Now</a>
+                <a href="<%= session.getAttribute("user") != null ? "Product.jsp" : "Signup.jsp" %>" class="bg-green-600 text-white px-6 py-2 rounded-md transition hover:bg-green-700">Get Started →</a>
+                <a href="<%= session.getAttribute("user") != null ? "Product.jsp" : "Signup.jsp" %>" class="border border-green-600 text-green-600 px-6 py-2 rounded-md transition hover:bg-green-100">Shop Now</a>
             </div>
         </div>
         <div class="w-full sm:w-1/2 flex justify-center sm:justify-end mt-8 sm:mt-0">
@@ -60,7 +59,7 @@
                 {"Cleaning Essentials.jpeg", "Cleaning Essentials"}
             };
             for (String[] category : categories) { %>
-                <a href="Product.jsp" class="flex flex-col items-center cursor-pointer hover-scale fade-in">
+                <a href="<%= session.getAttribute("user") != null ? "Product.jsp" : "Signup.jsp" %>" class="flex flex-col items-center cursor-pointer hover-scale fade-in">
                     <div class="w-28 h-28 sm:w-32 sm:h-32 bg-blue-50 rounded-xl flex items-center justify-center shadow">
                         <img src="<%= request.getContextPath() %>/Image/<%= category[0] %>" alt="<%= category[1] %>">
                     </div>
