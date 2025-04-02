@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FooterPage -- PantriPick</title>
+    <title>Footer</title>
 
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -86,12 +86,6 @@
 <body>
 
 <footer class="footer">
-    <nav class="footer-nav">
-        <a href="Home.jsp">Home</a>
-        <a href="Product.jsp">Products</a>
-        <a href="About.jsp">About Us</a>
-        <a href="Contact.jsp">Contact</a>
-    </nav>
 
     <p>Follow us on:</p>
     <div class="social-icons">
