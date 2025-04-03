@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="w-full sm:w-1/2 flex justify-center sm:justify-end mt-8 sm:mt-0">
-            <img class="max-w-xs sm:max-w-md lg:max-w-lg object-cover rounded-xl shadow-md fade-in" src="<%= request.getContextPath()%>/Image/Grocery Bag.jpg" alt="Fresh groceries delivered" >
+            <img class="max-w-xs sm:max-w-md lg:max-w-sm object-cover rounded-xl fade-in" src="<%= request.getContextPath()%>/Image/Grocery Bag.webp" alt="Fresh groceries delivered" >
         </div>
     </div>
 

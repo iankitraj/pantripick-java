@@ -173,7 +173,7 @@
                 <button type="submit" class="btn btn-login">Login</button>
             </form>
             <div class="link">
-                <a href="ForgetPassword.jsp">Forgot Password?</a> | <a href="Signup.jsp">Sign Up</a>
+                <a href="<%= request.getContextPath() %>/ForgetPassword.jsp">Forgot Password?</a> | <a href="Signup.jsp">Sign Up</a>
             </div>
         </div>
     </div>
