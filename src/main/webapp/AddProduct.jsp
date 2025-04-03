@@ -156,7 +156,7 @@
 
     <div class="container">
         <h2>ADD ITEMS</h2>
-        <form action="AddProductServlet" method="post" enctype="multipart/form-data">
+        <form action="<%= request.getContextPath() %>/AddProductServlet" method="post" enctype="multipart/form-data">
             <input type="text" class="form-control" name="name" placeholder="Name" required>
             <input type="number" class="form-control" name="quantity" placeholder="Quantity" required>
             <input type="number" class="form-control" name="price" placeholder="Price" required>

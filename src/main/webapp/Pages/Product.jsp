@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.sql.*" %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,67 +21,78 @@
             }
         }
     </style>
+
+    <script>
+    // WebSocket Connection to get real-time product updates
+    const socket = new WebSocket("ws://localhost:8080/PantriPick/ProductWebSocket");
+
+    // When a new product is added via WebSocket, update the UI
+    socket.onmessage = function(event) {
+        const product = JSON.parse(event.data);
+        const productContainer = document.createElement("div");
+        productContainer.classList.add("bg-white", "p-4", "rounded-lg", "shadow-md", "text-center", "transform", "transition", "hover:scale-105");
+
+        productContainer.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg">
+            <p class="mt-2">${product.name}</p>
+            <p class="font-semibold">₹${product.price}</p>
+            <a href="${(sessionStorage.getItem('user')) ? 'Details.jsp?id=' + product.id : 'Login.jsp'}" 
+               class="mt-2 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg">
+               View Details
+            </a>
+        `;
+
+        document.querySelector(".product-grid").appendChild(productContainer);
+    };
+    </script>
+
 </head>
 
 <body class="bg-gray-100">
     <%@ include file="navbar.jsp" %>
     <div class="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
         <div class="px-6 sm:px-16 lg:px-24 py-16 fade-in">
-            <!-- Heading -->
             <div class="relative inline-block py-3">
                 <h2 class="text-black text-2xl sm:text-3xl font-normal inline-block fade-in">
                     PRODUCTS <span class="font-bold">AVAILABLE</span>
                 </h2>
                 <span class="absolute left-full top-1/2 -translate-y-1/2 ml-3 w-16 border-t-2 border-black"></span>
             </div>
-
-            <!-- Sections with Fade-in Animation -->
+            
             <h5 class="text-xl font-bold mt-8 fade-in">Dairy, Bread & Eggs</h5>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4 fade-in">
-                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
-                    <img src="<%= request.getContextPath() %>/Image/bread.webp" alt="Britannia Brown Bread" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
-                    <p class="mt-2">Britannia Brown Bread</p>
-                    <p class="font-semibold">₹30</p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
-                    <img src="<%= request.getContextPath() %>/Image/dahi.webp" alt="Amul Masti Dahi" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
-                    <p class="mt-2">Amul Masti Dahi</p>
-                    <p class="font-semibold">₹70</p>
-                </div>
-                <a href="Details.jsp" class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
-                    <img src="<%= request.getContextPath() %>/Image/keloggs.jpg" alt="Honey Corn Flakes" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
-                    <p class="mt-2">Honey Corn Flakes</p>
-                    <p class="font-semibold">₹278</p>
-                </a>
-                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
-                    <img src="<%= request.getContextPath() %>/Image/eggs.webp" alt="Eggs Tray" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
-                    <p class="mt-2">Eggs Tray</p>
-                    <p class="font-semibold">₹100</p>
-                </div>
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4 fade-in product-grid">
+                <%
+                    try {
+                        // Step 1: Database Connection
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "807280");
 
-            <h5 class="text-xl font-bold mt-8 fade-in">Fruits & Vegetables</h5>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-4 fade-in">
-                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
-                    <img src="<%= request.getContextPath() %>/Image/fruits1.jpg" alt="Fresh Fruits" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
-                    <p class="mt-2">Fresh Fruits</p>
-                    <p class="font-semibold">₹60</p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
-                    <img src="<%= request.getContextPath() %>/Image/fruits2.jpg" alt="Seasonal Vegetables" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
-                    <p class="mt-2">Seasonal Vegetables</p>
-                    <p class="font-semibold">₹60</p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
-                    <img src="<%= request.getContextPath() %>/Image/fruits3.jpg" alt="Green Leafy" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
-                    <p class="mt-2">Green Leafy</p>
-                    <p class="font-semibold">₹60</p>
-                </div>
-                <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
-                    <img src="<%= request.getContextPath() %>/Image/fruits4.jpg" alt="Exotic Fruits" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg" />
-                    <p class="mt-2">Exotic Fruits</p>
-                    <p class="font-semibold">₹60</p>
-                </div>
+                        // Step 2: Fetch Products from Database
+                        String sql = "SELECT * FROM products";
+                        PreparedStatement pstmt = conn.prepareStatement(sql);
+                        ResultSet rs = pstmt.executeQuery();
+
+                        // Step 3: Loop through database results and display products
+                        while (rs.next()) {
+                %>
+                            <div class="bg-white p-4 rounded-lg shadow-md text-center transform transition hover:scale-105">
+                                <img src="<%= request.getContextPath() %>/<%= rs.getString("image") %>" alt="<%= rs.getString("name") %>" class="w-36 h-36 object-contain mx-auto bg-gray-200 rounded-lg">
+                                <p class="mt-2"><%= rs.getString("name") %></p>
+                                <p class="font-semibold">₹<%= rs.getDouble("price") %></p>
+                                <a href="<%= (session.getAttribute("user") != null) ? "Details.jsp?id=" + rs.getInt("id") : "Login.jsp" %>" 
+                                   class="mt-2 inline-block px-4 py-2 bg-blue-500 text-white rounded-lg">
+                                   View Details
+                                </a>
+                            </div>
+                <%
+                        }
+                        rs.close();
+                        pstmt.close();
+                        conn.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                %>
             </div>
         </div>
     </div>
