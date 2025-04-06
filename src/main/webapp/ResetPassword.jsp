@@ -76,7 +76,7 @@
 <body>
     <div class="container">
         <h2>Reset Your Password</h2>
-        <form action="<%= request.getContextPath() %>/ResetPasswordServlet" method="post">
+        <form action="<%= request.getContextPath() %>/ResetPasswordServlet" method="POST">
             <label>New Password:</label>
             <input type="password" name="newPassword" required>
             <button type="submit">Update Password</button>

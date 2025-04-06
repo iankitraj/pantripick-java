@@ -60,8 +60,8 @@ public class ForgotPasswordServlet extends HttpServlet {
                 session.setAttribute("email", email);
                 
                 // Send OTP via email
-                final String senderEmail = "iankitraj23@gmail.com";  // SMTP email
-                final String senderPassword = "zols ludu mycv tvpt";  // SMTP app password
+                final String senderEmail = "pantripickk@gmail.com";  // SMTP email
+                final String senderPassword = "kaaj xast igqp jiun";  // SMTP app password
                 
                 Properties props = new Properties();
                 props.put("mail.smtp.host", "smtp.gmail.com");

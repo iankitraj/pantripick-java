@@ -44,12 +44,12 @@ public class UserLoginServlet extends HttpServlet {
             if (rs.next()) {
                 String storedPassword = rs.getString("password");
 
-                if (storedPassword.equals(password)) { 
-                	
+                if (storedPassword.equals(password)) {
                     // ✅ Session Set
                     HttpSession session = request.getSession();
                     session.setAttribute("user", email);
-                    session.setMaxInactiveInterval(30 * 60); // 30 min session timeout
+                    session.setAttribute("user_id", rs.getInt("id")); // ✅ Store user_id in session
+                    session.setMaxInactiveInterval(30 * 60); // 30 minutes
 
                     // ✅ Cookie Set
                     Cookie userCookie = new Cookie("user", email);
@@ -65,7 +65,7 @@ public class UserLoginServlet extends HttpServlet {
             }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("error.jsp"); 
+            response.sendRedirect("error.jsp");
         } finally {
             try {
                 if (rs != null) rs.close();
