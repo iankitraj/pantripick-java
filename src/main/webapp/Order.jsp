@@ -1,5 +1,5 @@
 <%@ page import="java.util.*, java.sql.*, com.pantripick.Order, com.pantripick.OrderDAO" %>
-<%@ page contentType="text/html; charset=UTF-8" %> <!-- Yeh add kiya hai ₹ sahi dikhane ke liye -->
+<%@ page contentType="text/html; charset=UTF-8" %> 
 <%
     Class.forName("com.mysql.cj.jdbc.Driver");
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "807280");
