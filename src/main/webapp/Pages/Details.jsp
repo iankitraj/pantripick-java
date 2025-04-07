@@ -12,7 +12,7 @@
 
     <div class="flex-grow flex justify-center px-6 sm:px-16 lg:px-24 py-16">
         <div class="bg-white border border-gray-200 rounded-lg p-10 w-full max-w-5xl min-h-[550px] flex flex-col">
-            <a href="ProductList.jsp" class="text-black flex items-center text-sm mb-6">
+            <a href="Product.jsp" class="text-black flex items-center text-sm mb-6">
                 &#8592; Continue Shopping
             </a>
 
