@@ -8,8 +8,9 @@
   <title>Search Results</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
-<div class="px-6 sm:px-16 lg:px-24 py-12">
+  <body class="bg-gray-100">
+    <div class="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+      <div class="px-6 sm:px-16 lg:px-24 py-16 fade-in">
   <%
     String query = request.getParameter("q");
     if (query == null || query.trim().isEmpty()) {
@@ -61,5 +62,7 @@
       }
   %>
 </div>
+</div>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

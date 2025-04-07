@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,7 +59,7 @@ pageEncoding="UTF-8"%>
           ><i class="fab fa-x-twitter"></i
         ></a>
       </div>
-      <p>Â© 2025 PantriPick. All rights reserved.</p>
+      <p>© 2025 PantriPick. All rights reserved.</p>
     </footer>
   </body>
 </html>
