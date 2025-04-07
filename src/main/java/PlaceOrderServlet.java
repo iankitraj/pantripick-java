@@ -13,7 +13,7 @@ import jakarta.servlet.http.*;
 public class PlaceOrderServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // Cart item class
+    // Inner class for cart items
     static class CartItem {
         int productId;
         int quantity;
@@ -26,7 +26,9 @@ public class PlaceOrderServlet extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         HttpSession session = request.getSession(false);
         Integer userId = (session != null) ? (Integer) session.getAttribute("user_id") : null;
 
@@ -35,7 +37,7 @@ public class PlaceOrderServlet extends HttpServlet {
             return;
         }
 
-        // Get checkout details
+        // Collect checkout form details
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String phone = request.getParameter("phone");
@@ -46,9 +48,9 @@ public class PlaceOrderServlet extends HttpServlet {
         String state = request.getParameter("state");
         String pincode = request.getParameter("pincode");
 
-        String fullAddress = address1 + ", " + 
-                            (address2 != null && !address2.isEmpty() ? address2 + ", " : "") + 
-                            city + ", " + state + " - " + pincode;
+        String fullAddress = address1 + ", " +
+                (address2 != null && !address2.isEmpty() ? address2 + ", " : "") +
+                city + ", " + state + " - " + pincode;
 
         String recipient = firstName + " " + lastName;
 
@@ -58,7 +60,7 @@ public class PlaceOrderServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "807280");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "123456");
 
             // Fetch cart items
             String cartQuery = "SELECT c.product_id, c.quantity, p.price FROM cart c JOIN products p ON c.product_id = p.id WHERE c.user_id = ?";
@@ -91,17 +93,27 @@ public class PlaceOrderServlet extends HttpServlet {
             psOrder.setString(4, fullAddress);
             psOrder.executeUpdate();
 
-            // Get order ID
             ResultSet generatedKeys = psOrder.getGeneratedKeys();
             int orderId = 0;
             if (generatedKeys.next()) {
                 orderId = generatedKeys.getInt(1);
             }
 
+            // Insert into order_summary table
+            String insertSummary = "INSERT INTO order_summary (order_id, user_id, recipient_name, phone, email, address) VALUES (?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement psSummary = conn.prepareStatement(insertSummary)) {
+                psSummary.setInt(1, orderId);
+                psSummary.setInt(2, userId);
+                psSummary.setString(3, recipient);
+                psSummary.setString(4, phone);
+                psSummary.setString(5, email);
+                psSummary.setString(6, fullAddress);
+                psSummary.executeUpdate();
+            }
+
             // Insert order items
             String insertItemQuery = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
             psOrderItems = conn.prepareStatement(insertItemQuery);
-
             for (CartItem item : cartItems) {
                 psOrderItems.setInt(1, orderId);
                 psOrderItems.setInt(2, item.productId);
@@ -109,7 +121,6 @@ public class PlaceOrderServlet extends HttpServlet {
                 psOrderItems.setDouble(4, item.price);
                 psOrderItems.addBatch();
             }
-
             psOrderItems.executeBatch();
 
             // Clear user's cart
@@ -125,7 +136,7 @@ public class PlaceOrderServlet extends HttpServlet {
                 System.out.println("Email failed: " + e.getMessage());
             }
 
-            // ✅ Redirect to confirmation page
+            // Redirect to confirmation page
             response.sendRedirect("Pages/Confirm.jsp");
 
         } catch (Exception e) {
@@ -147,17 +158,15 @@ public class PlaceOrderServlet extends HttpServlet {
     }
 
     public static void sendConfirmationEmail(String recipientEmail, String recipientName, int orderId) {
-        final String senderEmail = "pantripickk@gmail.com";    // SMTP email
-        final String senderPassword = "kaaj xast igqp jiun";   // SMTP app password
+        final String senderEmail = "pantripickk@gmail.com";
+        final String senderPassword = "kaaj xast igqp jiun";  // SMTP App Password
 
-        // SMTP Server Properties
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
-        // Create Session
         Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(senderEmail, senderPassword);
@@ -165,23 +174,20 @@ public class PlaceOrderServlet extends HttpServlet {
         });
 
         try {
-            // Create Message
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(senderEmail));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
             message.setSubject("🛒 Order Confirmation - PantriPick");
 
             String emailContent = "Hello " + recipientName + ",\n\n" +
-                                   "Thank you for your order! 🙏\n" +
-                                   "Your Order ID is: " + orderId + "\n" +
-                                   "We will process your order shortly.\n\n" +
-                                   "For any queries, contact us at pantripickk@gmail.com\n\n" +
-                                   "Regards,\n" +
-                                   "Team PantriPick";
+                    "Thank you for your order! 🙏\n" +
+                    "Your Order ID is: " + orderId + "\n" +
+                    "We will process your order shortly.\n\n" +
+                    "For any queries, contact us at pantripickk@gmail.com\n\n" +
+                    "Regards,\n" +
+                    "Team PantriPick";
 
             message.setText(emailContent);
-
-            // Send Email
             Transport.send(message);
             System.out.println("✅ Order confirmation email sent successfully to " + recipientEmail);
 

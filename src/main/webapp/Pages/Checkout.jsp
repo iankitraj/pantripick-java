@@ -1,5 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*, java.util.*" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
     if (session.getAttribute("user_id") == null) {
         response.sendRedirect("Pages/Login.jsp");
@@ -36,122 +37,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Checkout</title>
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    />
-    <style>
-        body {
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        .checkout-container {
-            max-width: 650px;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 0.8s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .checkout-title {
-            display: flex;
-            align-items: center;
-            font-size: 22px;
-            font-weight: bold;
-        }
-        .checkout-title::after {
-            content: '';
-            flex-grow: 1;
-            height: 2px;
-            background-color: black;
-            margin-left: 10px;
-        }
-        .form-control {
-            border: 1px solid #ffcc00;
-            border-radius: 6px;
-        }
-        .form-control:focus {
-            border-color: #ff9900;
-            box-shadow: 0 0 5px rgba(255, 153, 0, 0.5);
-        }
-        .place-order-btn {
-            background-color: #28a745;
-            color: white;
-            border: 1px solid #28a745;
-            border-radius: 6px;
-            padding: 8px 15px;
-            font-weight: bold;
-        }
-        .place-order-btn:hover {
-            background-color: #218838;
-        }
-        .back-to-cart {
-            text-decoration: none;
-            color: #155724;
-            font-weight: bold;
-            font-size: 14px;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div class="checkout-container">
-    <a href="Cart.jsp" class="back-to-cart">← Go Back to Cart</a>
+<body class="bg-gray-100">
+<%@ include file="navbar.jsp" %>
+<div class="max-w-3xl mx-auto p-6 bg-white mt-6 mb-10 rounded-2xl shadow-md">
+    <a href="Cart.jsp" class="text-sm flex items-center mb-4 hover:underline">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Cart
+    </a>
 
-    <div class="checkout-title mt-2">
-        CHECK <span style="font-weight: bold">OUT</span>
-    </div>
+    <h2 class="text-3xl font-light mb-4 tracking-tight relative inline-block">
+        CHECK <span class="font-bold">OUT</span>
+        <span class="absolute top-1/2 -right-20 w-16 h-0.5 bg-gray-900 transform -translate-y-1/2"></span>
+    </h2>
 
-    <p class="fw-bold mt-3">Total Amount to be paid: ₹<%= total %></p>
+    <p class="text-lg font-semibold mt-4 mb-6">Total Amount: <span class="text-green-600 font-bold">₹<%= total %></span></p>
 
-    <form action="<%= request.getContextPath() %>/PlaceOrderServlet" method="POST">
-        <div class="row g-3">
-            <div class="col-md-6">
-                <input type="text" class="form-control" name="firstName" placeholder="First Name" required />
-            </div>
-            <div class="col-md-6">
-                <input type="text" class="form-control" name="lastName" placeholder="Last Name" required />
-            </div>
-            <div class="col-md-6">
-                <input type="text" class="form-control" name="phone" placeholder="Phone number" required />
-            </div>
-            <div class="col-md-6">
-                <input type="email" class="form-control" name="email" placeholder="Email address" required />
-            </div>
-            <div class="col-12">
-                <input type="text" class="form-control" name="address1" placeholder="Address Line 1" required />
-            </div>
-            <div class="col-12">
-                <input type="text" class="form-control" name="address2" placeholder="Address Line 2" />
-            </div>
-            <div class="col-md-6">
-                <input type="text" class="form-control" name="city" placeholder="City" required />
-            </div>
-            <div class="col-md-6">
-                <input type="text" class="form-control" name="state" placeholder="State" required />
-            </div>
-            <div class="col-12">
-                <input type="text" class="form-control" name="pincode" placeholder="PIN Code" required />
-            </div>
-            <div class="col-12 text-end">
-                <button type="submit" class="place-order-btn">Place Order</button>
-            </div>
+    <form action="<%= request.getContextPath() %>/PlaceOrderServlet" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" name="firstName" placeholder="First Name" required class="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <input type="text" name="lastName" placeholder="Last Name" required class="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <input type="text" name="phone" placeholder="Phone number" required class="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <input type="email" name="email" placeholder="Email address" required class="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <input type="text" name="address1" placeholder="Address Line 1" required class="border rounded-xl p-3 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <input type="text" name="address2" placeholder="Address Line 2 (Optional)" class="border rounded-xl p-3 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <input type="text" name="city" placeholder="City" required class="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <input type="text" name="state" placeholder="State" required class="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <input type="text" name="pincode" placeholder="PIN Code" required class="border rounded-xl p-3 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-green-500" />
+        <div class="md:col-span-2 text-right">
+            <button type="submit" class="px-6 py-2 text-green-600 border-2 border-green-600 rounded-xl hover:bg-green-600 hover:text-white transition-all font-semibold">
+                Place Order
+            </button>
         </div>
     </form>
 </div>
+<%@ include file="footer.jsp" %>
+
 </body>
 </html>

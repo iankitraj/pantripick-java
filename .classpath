@@ -13,21 +13,21 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="D:/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar">
+	<classpathentry exported="true" kind="lib" path="C:/Users/Rishabh/Documents/Java-Projects/pantripick-java/src/main/java/lib/mysql-connector-j-9.2.0.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ASUS/eclipse-workspace/JDBCServletCRUD/src/main/webapp/WEB-INF/lib/javax.mail-1.6.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/eclipse-workspace/Experiment 2/src/main/webapp/WEB-INF/lib/mysql-connector-j-9.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Downloads/apache-tomcat-10.1.34-windows-x64/apache-tomcat-10.1.34/lib/catalina.jar">
+	<classpathentry kind="lib" path="C:/Users/Rishabh/Downloads/javax.mail-1.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/mysql-connector-j-9.2.0/mysql-connector-j-9.2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 10.1/lib/catalina.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="http://tomcat.apache.org/tomcat-10.1-doc/api/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Downloads/javax.activation.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Downloads/json-20210307.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Downloads/apache-tomcat-10.1.34-windows-x64/apache-tomcat-10.1.34/lib/servlet-api.jar">
+	<classpathentry kind="lib" path="C:/Users/Rishabh/Downloads/activation-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Rishabh/Downloads/json-20210307.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 10.1/lib/servlet-api.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="https://jakarta.ee/specifications/servlet/6.0/apidocs/jakarta.servlet/"/>
 		</attributes>

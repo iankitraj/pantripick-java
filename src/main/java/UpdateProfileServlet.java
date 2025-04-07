@@ -32,7 +32,7 @@ public class UpdateProfileServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "807280");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "123456");
 
             String query = "UPDATE user SET name = ?, password = ? WHERE email = ?";
             ps = con.prepareStatement(query);

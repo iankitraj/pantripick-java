@@ -30,7 +30,7 @@ public class ItemListServlet extends HttpServlet {
         try {
             // Database connection
             Class.forName("com.mysql.jdbc.Driver");  
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "807280");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "123456");
 
             String sql = "SELECT * FROM products";  // fetching all original products
             PreparedStatement ps = conn.prepareStatement(sql);

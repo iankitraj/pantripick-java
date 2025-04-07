@@ -28,7 +28,7 @@ public class ResetPasswordServlet extends HttpServlet {
 
         String url = "jdbc:mysql://localhost:3306/pantripick";
         String user = "root";
-        String password = "807280";
+        String password = "123456";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
