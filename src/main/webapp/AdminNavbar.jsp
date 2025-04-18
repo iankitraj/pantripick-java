@@ -19,19 +19,5 @@
         </nav>
         <button class="btn-logout" onclick="location.href='LogoutServlet'">Logout</button>
     </header>
-    <% 
-        // Check if the pageName attribute is set. If not, default to "Items List".
-        String pageName = (String) request.getAttribute("pageName");
-        if (pageName == null || pageName.isEmpty()) {
-            pageName = "Items List";
-        }
-    %>
-    <%-- Conditionally render the page title --%>
-    <% if (!pageName.equals("Add Product")) { %>
-        <main>
-            <h1><%= pageName %></h1>
-            <hr />
-        </main>
-    <% } %>
 </body>
 </html>

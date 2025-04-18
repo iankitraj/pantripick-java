@@ -46,7 +46,7 @@ public class UpdateProfileServlet extends HttpServlet {
             } else {
                 request.setAttribute("msg", "Update Failed");
             }
-            request.getRequestDispatcher("Pages/UserProfile.jsp").forward(request, response);
+            request.getRequestDispatcher("Pages/Profile.jsp").forward(request, response);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             response.sendRedirect("error.jsp");

@@ -32,6 +32,7 @@ public class AddProductServlet extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         double price = Double.parseDouble(request.getParameter("price"));
         String description = request.getParameter("description");
+        String category = request.getParameter("category");
 
         // Set path to save uploaded file in "Image" folder
         String uploadPath = getServletContext().getRealPath("/") + UPLOAD_DIR;
@@ -53,15 +54,16 @@ public class AddProductServlet extends HttpServlet {
         PreparedStatement pstmt = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "807280");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "123456");
 
-            String sql = "INSERT INTO products (name, quantity, price, description, image) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO products (name, quantity, price, description, image, category) VALUES (?, ?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, name);
             pstmt.setInt(2, quantity);
             pstmt.setDouble(3, price);
             pstmt.setString(4, description);
             pstmt.setString(5, UPLOAD_DIR + "/" + fileName); // ✅ Save as "Image/filename.jpg"
+            pstmt.setString(6, category);
 
             int row = pstmt.executeUpdate();
             if (row > 0) {

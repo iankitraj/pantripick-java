@@ -13,7 +13,7 @@
 
 <%
     Integer userId = (Integer) session.getAttribute("user_id");
-    String userName = (String) session.getAttribute("user_name");
+    /* String userName = (String) session.getAttribute("user_name"); */
     String userEmaill = (String) session.getAttribute("user_email");
 
     if (userId == null) {
@@ -26,10 +26,21 @@
         Connection conn = null;
         PreparedStatement psOrders = null;
         ResultSet rsOrders = null;
+        String userName = "";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "123456");
+
+            // Fetch user's name
+            try (PreparedStatement psUser = conn.prepareStatement("SELECT name FROM user WHERE id = ?")) {
+                psUser.setInt(1, userId);
+                try (ResultSet rsUser = psUser.executeQuery()) {
+                    if (rsUser.next()) {
+                        userName = rsUser.getString("name");
+                    }
+                }
+            }
 
             String query = "SELECT os.order_id, os.recipient_name, os.address, os.phone, os.email, o.total_cost, o.timestamp " +
                            "FROM order_summary os JOIN orders o ON os.order_id = o.id " +
@@ -62,13 +73,12 @@
         </div>
         <div class="mt-4 sm:mt-0 space-x-2">
             <a href="EditProfile.jsp" class="inline-block px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 text-sm">Edit Profile</a>
-            <form action="DeleteAccountServlet" method="post" style="display:inline;">
+            <form action="<%= request.getContextPath() %>/DeleteAccountServlet" method="POST" style="display:inline;">
                 <button type="submit" class="inline-block px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 text-sm">Delete Account</button>
             </form>
         </div>
     </div>
 </div>
-
 
     <h3 class="text-black text-xl font-semibold mt-6">Past Orders</h3>
 

@@ -121,7 +121,7 @@
         <%
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "807280");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "123456");
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT * FROM products");
 
@@ -135,7 +135,15 @@
             <tr>
                 <td><img src="<%= image %>" alt="Product Image"></td>
                 <td><%= name %></td>
-                <td><%= quantity %></td>
+                <td>
+    <form action="<%= request.getContextPath() %>/UpdateQuantityServlet" method="POST" style="display:flex; align-items:center; justify-content:center; gap:5px;">
+        <input type="hidden" name="productId" value="<%= id %>">
+        <button type="submit" name="action" value="decrement" class="btn-danger" style="padding: 4px 8px;">−</button>
+        <span><%= quantity %></span>
+        <button type="submit" name="action" value="increment" class="btn-danger" style="padding: 4px 8px;">+</button>
+    </form>
+</td>
+
                 <td>&#8377;<%= price %></td>
                 <td>
                     <form action="<%= request.getContextPath() %>/DeleteProductServlet" method="POST">

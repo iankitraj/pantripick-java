@@ -23,7 +23,7 @@ public class DeleteProductServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/pantripick", "root", "807280");
+                "jdbc:mysql://localhost:3306/pantripick", "root", "123456");
 
             String sql = "DELETE FROM products WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(sql);

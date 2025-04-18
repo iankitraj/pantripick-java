@@ -16,7 +16,7 @@
 
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "807280");
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pantripick", "root", "123456");
 
         String query = "SELECT * FROM user WHERE email = ?";
         ps = con.prepareStatement(query);

@@ -2,175 +2,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AddProduct - PantriPick Admin</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
-    
-    <style>
-        /* Background Image */
-        body {
-            font-family: Arial, sans-serif;
-            background: url('Image/background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            position: relative;
-        }
-
-        /* Overlay to improve text visibility */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
-            z-index: 0;
-        }
-
-        /* Navbar styles */
-        header {
-            background-color: rgba(34, 34, 34, 0.9);
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            position: relative;
-            z-index: 2;
-        }
-
-        header .logo {
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-
-        header nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1rem;
-            transition: color 0.3s ease-in-out;
-        }
-
-        header nav a:hover {
-            color: #ff9800;
-        }
-
-        /* Form container with fade-in animation */
-        .container {
-            background: rgba(255, 255, 255, 0.9);
-            color: black;
-            padding: 40px;
-            border-radius: 20px;
-            width: 400px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            margin: 50px auto;
-            position: relative;
-            z-index: 1;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* Smooth input focus effect */
-        .form-control {
-            margin-bottom: 15px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .form-control:focus {
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-            border-color: #007bff;
-            transform: scale(1.02);
-        }
-
-        /* File upload animation */
-        .upload-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed #ddd;
-            padding: 20px;
-            cursor: pointer;
-            background-color: #f9f9f9;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .upload-btn:hover {
-            border-color: #007bff;
-            background: rgba(0, 123, 255, 0.1);
-            transform: scale(1.05);
-        }
-
-        .upload-btn span {
-            color: #555;
-            transition: color 0.3s ease-in-out;
-        }
-
-        .upload-btn input[type="file"] {
-            display: none;
-        }
-
-        /* Submit button styles */
-        .btn-submit {
-            background-color: black;
-            color: white;
-            border-radius: 25px;
-            width: 100%;
-            padding: 10px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .btn-submit:hover {
-            background-color: darkslategray;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-submit:active {
-            transform: translateY(1px);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Add Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen flex flex-col">
 
-    <% request.setAttribute("pageName", "Add Product"); %>
-    <jsp:include page="AdminNavbar.jsp" />
+<% request.setAttribute("pageName", "Add Product"); %>
+<jsp:include page="AdminNavbar.jsp" />
 
-    <div class="container">
-        <h2>ADD ITEMS</h2>
-        <form action="<%= request.getContextPath() %>/AddProductServlet" method="post" enctype="multipart/form-data">
-            <input type="text" class="form-control" name="name" placeholder="Name" required>
-            <input type="number" class="form-control" name="quantity" placeholder="Quantity" required>
-            <input type="number" class="form-control" name="price" placeholder="Price" required>
-            <textarea class="form-control" name="description" placeholder="Description" rows="3" required></textarea>
-            
-            <label class="upload-btn">
-                <span>Upload Image</span>
-                <input type="file" name="image" accept="image/*">
+<% String success = request.getParameter("success");
+   if ("true".equals(success)) {
+%>
+<div class="fixed top-4 right-4 z-50">
+    <div class="bg-green-600 text-white px-4 py-2 rounded shadow-md flex items-center justify-between space-x-4">
+        <span>✅ Product added successfully!</span>
+        <button onclick="this.parentElement.remove()" class="text-white font-bold">✕</button>
+    </div>
+</div>
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+</script>
+<% } %>
+
+<div class="flex flex-col items-center justify-center px-6 py-12">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-xl">
+         <div class="relative inline-block mb-6">
+            <h2 class="text-black text-2xl sm:text-3xl font-normal inline-block">
+                ADD <span class="font-bold">PRODUCTS</span>
+            </h2>
+            <span class="absolute left-full top-1/2 -translate-y-1/2 ml-3 w-16 border-t-2 border-black"></span>
+        </div>
+        <p class="text-sm text-gray-500 mb-6">Enter product details below.</p>
+
+        <form action="<%= request.getContextPath() %>/AddProductServlet" method="post" enctype="multipart/form-data" class="space-y-4 text-black">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input type="text" name="name" placeholder="Product Name" class="p-2 border rounded w-full focus:outline-none focus:ring-2 focus:ring-gray-300" required />
+                <input type="number" name="quantity" placeholder="Quantity" class="p-2 border rounded w-full focus:outline-none focus:ring-2 focus:ring-gray-300" required />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <input type="number" name="price" placeholder="Price" class="p-2 border rounded w-full focus:outline-none focus:ring-2 focus:ring-gray-300" required />
+                <select name="category" class="p-2 border rounded w-full focus:outline-none focus:ring-2 focus:ring-gray-300" required>
+                    <option value="">Select Category</option>
+                    <option value="Dairy and Bread">Dairy and Bread</option>
+                    <option value="Fruits and Vegetables">Fruits and Vegetables</option>
+                    <option value="Cold Drinks and Juice">Cold Drinks and Juice</option>
+                    <option value="Snacks and Munchies">Snacks and Munchies</option>
+                    <option value="Bakery and Biscuits">Bakery and Biscuits</option>
+                    <option value="Sauces and Spreads">Sauces and Spreads</option>
+                    <option value="Pharma and Wellness">Pharma and Wellness</option>
+                    <option value="Personal Care">Personal Care</option>
+                    <option value="Cleaning Essentials">Cleaning Essentials</option>
+                    <option value="Home and Offices">Home and Offices</option>
+                </select>
+            </div>
+
+            <textarea name="description" placeholder="Product Description" rows="3" class="p-2 w-full border rounded focus:outline-none focus:ring-2 focus:ring-gray-300" required></textarea>
+
+            <label class="flex flex-col items-center justify-center border-2 border-gray-400 py-6 rounded cursor-pointer hover:border-blue-500 transition">
+                <span class="text-gray-700">📸 Upload Image</span>
+                <input type="file" name="image" accept="image/*" class="hidden" />
             </label>
 
-            <br><br>
-            <button type="submit" class="btn btn-submit">Add Product</button>
+            <button type="submit" class="w-full bg-gray-700 text-white py-2 rounded-md hover:bg-blue-800 transition">
+                Add Product
+            </button>
         </form>
     </div>
+</div>
 
 </body>
 </html>
